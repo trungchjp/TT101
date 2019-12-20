@@ -34,15 +34,5 @@ class AriticleViewModel: NSObject {
         }).disposed(by: disposeBag)
     }
     
-    func searchArticles() {
-        ariticlesSearch.asObservable().subscribe(onNext: { (param) in
-            if param.count <= 0 || param.isEmpty {return}
-            Service().searchAriticles(text: param) { (response) in
-                if let data = response {
-                    self.getAriticlesSearch.accept(data.response.docs)
-                }
-            }
-        }).disposed(by: disposeBag)
-    }
 }
 
