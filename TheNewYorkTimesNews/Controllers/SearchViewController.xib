@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="TheNewYorkTimesNews" customModuleProvider="target">
+            <connections>
+                <outlet property="searchTextField" destination="RKF-ZI-d69" id="dlh-Oc-XlM"/>
+                <outlet property="tableView" destination="qOB-iu-DFR" id="gye-gl-2SN"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qOB-iu-DFR">
+                    <rect key="frame" x="8" y="98" width="398" height="764"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RKF-ZI-d69">
+                    <rect key="frame" x="30" y="54" width="354" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="ZNH-vI-1Os"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qOB-iu-DFR" firstAttribute="top" secondItem="RKF-ZI-d69" secondAttribute="bottom" constant="10" id="Ba7-wl-hTn"/>
+                <constraint firstItem="qOB-iu-DFR" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Kod-v3-CC9"/>
+                <constraint firstItem="RKF-ZI-d69" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="Kxa-Ps-1Iw"/>
+                <constraint firstItem="qOB-iu-DFR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="Nz9-qW-mPz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qOB-iu-DFR" secondAttribute="trailing" constant="8" id="atq-cX-vTi"/>
+                <constraint firstItem="RKF-ZI-d69" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="jNg-O5-4N7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RKF-ZI-d69" secondAttribute="trailing" constant="30" id="yjq-g8-qEJ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="128.57142857142856"/>
+        </view>
+    </objects>
+</document>
