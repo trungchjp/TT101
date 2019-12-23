@@ -18,9 +18,13 @@ class Service {
     
     func getLatestAriticles(date: Date, completion: @escaping (_ arr: ResponseArticle? )->()) {
         
-        let calendar = Calendar.current
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
+//        let calendar = Calendar.current
+//        let year = calendar.component(.year, from: date)
+//        let month = calendar.component(.month, from: date)
+        
+        let calendar = NSCalendar.init(calendarIdentifier: NSCalendar.Identifier.gregorian)
+        let month = (calendar?.component(NSCalendar.Unit.month, from: date)) ?? 10
+        let year = (calendar?.component(NSCalendar.Unit.year, from: date)) ?? 2019
         
         let url = "\(domain)archive/v1/\(year)/\(month).json?api-key=\(key)"
         let urlString = URL.init(string: url)

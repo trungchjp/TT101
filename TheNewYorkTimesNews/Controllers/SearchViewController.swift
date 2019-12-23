@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 class SearchViewController: UIViewController {
     
@@ -19,9 +20,13 @@ class SearchViewController: UIViewController {
     var docs: Document!
     let disposeBag = DisposeBag()
     var timer: Timer?
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         
         checkText()
         selectRow()
@@ -34,33 +39,47 @@ class SearchViewController: UIViewController {
         tableView.tableFooterView = UIView()
         
         tableView.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
-        
+//        getData()
+//        Observable.of("key").bind(to: viewModel.ariticlesSearch).disposed(by: disposeBag)
 //        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     
     }
     
-    func checkText() {
-        searchTextField.becomeFirstResponder()
-        searchTextField.rx.controlEvent([.editingChanged])
-            .asObservable().subscribe(onNext: { (_) in
-                self.timer?.invalidate()
-                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.getData), userInfo: nil, repeats: false)
-            }).disposed(by: disposeBag)
-        
-        searchTextField.rx.controlEvent([.editingDidEndOnExit]).asObservable().subscribe(onNext: { (_) in
-            self.view.endEditing(true)
-        }).disposed(by: disposeBag)
+    @objc func refresh() {
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
-    @objc func getData() {
-        let text = searchTextField.text?.trimmingCharacters(in: .whitespaces)
-        guard let keyword = text, !keyword.isEmpty else { return }
-        Observable.of(keyword).bind(to: viewModel.ariticlesSearch).disposed(by: self.disposeBag)
-        
-        viewModel.getAriticlesSearch.asObservable().bind(to: tableView.rx.items(cellIdentifier: "NewsTableViewCell", cellType: NewsTableViewCell.self)) { index, entity, cell in
-            cell.bindData(docs: entity)
-        }.disposed(by: disposeBag)
+    func checkText() {
+        searchTextField.rx.controlEvent([.editingChanged])
+            .throttle(.microseconds(1000), scheduler: MainScheduler.instance)
+            .asObservable().subscribe(onNext: { [weak self] (_) in
+                self?.getData()
+            }).disposed(by: disposeBag)
     }
+    
+    func getData() {
+        let dataSource = RxTableViewSectionedReloadDataSource<CustomData>( configureCell: { dataSource, tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
+            cell.bindData(docs: item)
+            return cell
+        })
+        let text = searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let key = text, !key.isEmpty else { return }
+        Observable.of(key).bind(to: self.viewModel.ariticlesSearch).disposed(by: self.disposeBag)
+        tableView.dataSource = nil
+        viewModel.getAriticlesSearch.asObservable().bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+    }
+    
+//    @objc func getData() {
+//        let text = searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+//        guard let keyword = text, !keyword.isEmpty else { return }
+//        Observable.of(keyword).bind(to: viewModel.ariticlesSearch).disposed(by: self.disposeBag)
+//        tableView.dataSource = nil
+//        viewModel.getAriticlesSearch.asObservable().bind(to: tableView.rx.items(cellIdentifier: "NewsTableViewCell", cellType: NewsTableViewCell.self)) { index, entity, cell in
+//            cell.bindData(docs: entity)
+//        }.disposed(by: disposeBag)
+//    }
 
     func selectRow() {
         Observable
@@ -74,3 +93,5 @@ class SearchViewController: UIViewController {
         }.disposed(by: disposeBag)
     }
 }
+
+

@@ -19,30 +19,40 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NoX-aw-fkW">
-                                        <rect key="frame" x="8" y="60" width="398" height="694"/>
+                                        <rect key="frame" x="8" y="108" width="398" height="666"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-SS-Boj">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="VNj-hu-eNm"/>
+                                        </constraints>
+                                    </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="NoX-aw-fkW" secondAttribute="trailing" constant="8" id="F3w-lT-aKV"/>
-                                    <constraint firstItem="NoX-aw-fkW" firstAttribute="top" secondItem="Nce-tF-swX" secondAttribute="top" constant="60" id="Ji4-JR-hHK"/>
-                                    <constraint firstItem="NoX-aw-fkW" firstAttribute="leading" secondItem="Nce-tF-swX" secondAttribute="leading" constant="8" id="Yvu-Kb-4aB"/>
-                                    <constraint firstAttribute="bottom" secondItem="NoX-aw-fkW" secondAttribute="bottom" constant="20" symbolic="YES" id="odr-jf-OYg"/>
+                                    <constraint firstItem="NoX-aw-fkW" firstAttribute="top" secondItem="PwF-SS-Boj" secondAttribute="bottom" constant="8" id="L87-NE-7Pm"/>
+                                    <constraint firstItem="NoX-aw-fkW" firstAttribute="leading" secondItem="Nce-tF-swX" secondAttribute="leading" constant="8" id="Nep-Lb-Mvt"/>
+                                    <constraint firstAttribute="trailing" secondItem="PwF-SS-Boj" secondAttribute="trailing" id="OQk-sv-4Pu"/>
+                                    <constraint firstAttribute="trailing" secondItem="NoX-aw-fkW" secondAttribute="trailing" constant="8" id="PFY-QN-Xyb"/>
+                                    <constraint firstItem="PwF-SS-Boj" firstAttribute="top" secondItem="Nce-tF-swX" secondAttribute="top" id="Wie-Gb-an0"/>
+                                    <constraint firstItem="PwF-SS-Boj" firstAttribute="leading" secondItem="Nce-tF-swX" secondAttribute="leading" id="mQX-VL-fDF"/>
+                                    <constraint firstAttribute="bottom" secondItem="NoX-aw-fkW" secondAttribute="bottom" id="q9F-OU-65X"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Nce-tF-swX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HOY-TU-rNo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Nce-tF-swX" secondAttribute="trailing" id="Yep-6K-4dL"/>
-                            <constraint firstItem="Nce-tF-swX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="aJD-1F-CD4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Nce-tF-swX" secondAttribute="bottom" id="lwU-8L-Zb2"/>
+                            <constraint firstItem="Nce-tF-swX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="D1D-wL-bAs"/>
+                            <constraint firstItem="Nce-tF-swX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="g2k-c6-fMV"/>
+                            <constraint firstItem="Nce-tF-swX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mjF-6o-mhd"/>
+                            <constraint firstItem="Nce-tF-swX" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vsX-UU-ri1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="RSo-GC-CBV"/>
                     <connections>
+                        <outlet property="datePicker" destination="PwF-SS-Boj" id="rhz-35-Mil"/>
                         <outlet property="tableView" destination="NoX-aw-fkW" id="8h3-dv-UVk"/>
                     </connections>
                 </viewController>
@@ -57,19 +67,13 @@
                     <view key="view" contentMode="scaleToFill" id="FKD-yB-JRL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="PwF-SS-Boj">
-                                <rect key="frame" x="0.0" y="124" width="414" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </datePicker>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="1dK-NW-ggp"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5c-6B-gza" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1836" y="138"/>
+            <point key="canvasLocation" x="1834.7826086956522" y="137.94642857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f9R-V1-AbC">
