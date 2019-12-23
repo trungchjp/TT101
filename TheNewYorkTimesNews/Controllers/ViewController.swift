@@ -14,8 +14,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: AriticleViewModel!
-    var docs: Document!
+    var viewModel: AriticleViewModel?
+    var docs: Document?
     var date: Date = Date()
     let disposeBag = DisposeBag()
     
@@ -23,14 +23,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = AriticleViewModel()
-        viewModel.getArticles()
+        viewModel?.getArticles()
         getData()
         selectRow()
         
         tableView.tableFooterView = UIView()
         
         tableView.register(UINib.init(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
-        
+         
         navigationItem.title = "NewYorkTimes"
 //        navigationController?.navigationBar.barTintColor = UIColor.gray
         
@@ -45,8 +45,8 @@ class ViewController: UIViewController {
     }
     
     func getData() {
-        Observable.of(date).bind(to: viewModel.ariticles).disposed(by: disposeBag)
-        viewModel.getAriticle.asObservable().bind(to: tableView.rx.items(cellIdentifier: "NewsTableViewCell", cellType: NewsTableViewCell.self)) { index, entity, cell in
+        Observable.of(date).bind(to: viewModel!.ariticles).disposed(by: disposeBag)
+        viewModel?.getAriticle.asObservable().bind(to: tableView.rx.items(cellIdentifier: "NewsTableViewCell", cellType: NewsTableViewCell.self)) { index, entity, cell in
             cell.bindData(docs: entity)
         }.disposed(by: disposeBag)
     }

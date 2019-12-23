@@ -13,6 +13,7 @@ import Kingfisher
 
 class NewsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var parentView: UIView!
     @IBOutlet weak var articlesImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -22,6 +23,9 @@ class NewsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
+        
+        parentView.layer.borderWidth = 0.5
         
     }
 
